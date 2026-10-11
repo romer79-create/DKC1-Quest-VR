@@ -1,0 +1,14 @@
+name: Contribution idea
+description: Discuss a focused contribution
+body:
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed change and why it helps
+    validations:
+      required: true
+  - type: textarea
+    id: approach
+    attributes:
+      label: Approach, tests and license/provenance
+      description: "Do not attach game assets, generated game code or binary builds."

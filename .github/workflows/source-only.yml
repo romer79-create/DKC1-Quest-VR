@@ -1,0 +1,15 @@
+name: Source-only checks
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  source-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          fetch-depth: 0
+      - name: Audit tracked source and history
+        run: python3 scripts/check_public_source.py --tracked --history
+      - name: Host-only unit tests
+        run: clang -std=c11 -O2 -Wall -Wextra -Werror -pthread -Inative-host tests/game_host_test.c native-host/host_util.c -lm -o /tmp/dkc1-host-test && /tmp/dkc1-host-test

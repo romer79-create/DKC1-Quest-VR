@@ -1,0 +1,5 @@
+SYLAR_0.2 {
+    global: sylar_game_start; sylar_game_state; sylar_game_copy; sylar_game_detach;
+        sylar_game_diorama; sylar_game_frame; sylar_game_relief;
+    local: *;
+};

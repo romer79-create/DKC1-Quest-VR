@@ -1,0 +1,43 @@
+plugins {
+    id 'com.android.application'
+}
+def sylarSandbox = rootProject.file('../.local')
+layout.buildDirectory = new File(sylarSandbox, 'android-app')
+android {
+    namespace 'soluciones.sylar.dkc1questvr'
+    compileSdk 36
+    buildToolsVersion '36.0.0'
+    ndkVersion '27.0.12077973'
+    defaultConfig {
+        applicationId 'soluciones.sylar.dkc1questvr'
+        minSdk 26
+        // Target the prepared platform. All native calls still use API 26+.
+        // Headset behavior is a separate, pending hardware validation.
+        targetSdk 36
+        versionCode 12
+        versionName '0.8.2-source'
+        ndk { abiFilters 'arm64-v8a' }
+        externalNativeBuild {
+            cmake { arguments '-DANDROID_STL=none', '-DANDROID_SUPPORT_FLEXIBLE_PAGE_SIZES=ON' }
+        }
+    }
+    buildFeatures { prefab true; buildConfig false }
+    externalNativeBuild {
+        cmake {
+            path file('src/main/cpp/CMakeLists.txt')
+            version '3.31.6'
+            buildStagingDirectory new File(sylarSandbox, 'android-native')
+        }
+    }
+    buildTypes {
+        debug { }
+        release { minifyEnabled false }
+    }
+    packaging {
+        jniLibs { useLegacyPackaging false }
+    }
+}
+dependencies {
+    implementation 'org.khronos.openxr:openxr_loader_for_android:1.1.53'
+}
+dependencyLocking { lockAllConfigurations() }

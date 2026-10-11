@@ -1,0 +1,24 @@
+name: Bug report
+description: Report a reproducible port issue without game data
+body:
+  - type: markdown
+    attributes:
+      value: "Do not attach ROMs, game screenshots/audio, generated code, private fixtures, saves, APKs or credentials. Use text repro steps or synthetic illustrations."
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem and expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Reproduction steps
+      description: "Include version, headset/OS, level and controls used; keep game data local."
+    validations:
+      required: true
+  - type: textarea
+    id: validation
+    attributes:
+      label: Relevant text diagnostics
+      description: "Remove local paths, device identifiers and private data."
